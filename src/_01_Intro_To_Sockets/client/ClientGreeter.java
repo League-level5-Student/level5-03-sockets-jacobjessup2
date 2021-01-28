@@ -26,6 +26,7 @@ public class ClientGreeter {
          //9. Close the client's server object
          socket.close();
     } catch (IOException e) {
+    	System.out.println("catch3");
 		// TODO: handle exception
 	}
    }

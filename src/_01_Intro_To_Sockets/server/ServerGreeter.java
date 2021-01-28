@@ -12,6 +12,7 @@ public class ServerGreeter extends Thread {
 		serverSocket = new ServerSocket(8080);
 		//*OPTIONAL* you can set a time limit for the server to wait by using the 
 		//  ServerSocket's setSoTimeout(int timeInMilliSeconds) method
+		serverSocket.setSoTimeout(40000);
 	}
 
 	public void run() {
@@ -27,8 +28,7 @@ public class ServerGreeter extends Thread {
 				//9. Create an object of the Socket class and initialize it to serverSocket.accept();
 				//   Change serverSocket to match the ServerSocket member variable you created in step 1.
 				//   The program will wait her until either a client connects or the timeout expires.
-				Socket sock = new Socket();
-				serverSocket.accept();
+				Socket sock = serverSocket.accept();
 				//10. Let the user know that the client has connected.
 				System.out.println("connected");
 				//11. Create a DataInputStream object. When initializing it, use the Socket object you created in step 9 to call the getInputStream() method.
@@ -46,10 +46,12 @@ public class ServerGreeter extends Thread {
 			
 			//6. If the program catches a SocketTimeoutException, let the user know about it and set loop's boolean variable to false.
 			catch (SocketTimeoutException e) {
+				System.out.println("catch1");
 				vari = false;
 			}
 			//7. If the program catches a IOException, let the user know about it and set the loop's boolean variable to false.
 			catch (IOException f) {
+				System.out.println("catch2");
 				vari = false;
 			}
 		}
@@ -58,13 +60,14 @@ public class ServerGreeter extends Thread {
 
 	public static void main(String[] args) {
 		//16. In a new thread, create an object of the ServerGreeter class and start the thread. Don't forget the try-catch.
-		Thread r1 = new Thread(()->{
-			try {
-				new ServerGreeter();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}) ;
-		r1.start();
+		Thread r1;
+		try {
+			r1 = new Thread(new ServerGreeter());
+			r1.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
