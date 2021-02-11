@@ -26,16 +26,17 @@ JTextField text = new JTextField("                        ");
 		new ChatApp();
 	}
 	
+	
 	public ChatApp(){
 		
-		int response = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "Buttons!", JOptionPane.YES_NO_OPTION);
+		int response = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "Chat!", JOptionPane.YES_NO_OPTION);
 		if(response == JOptionPane.YES_OPTION){
 			server = new Server2(8080);
 			setTitle("SERVER");
 			JOptionPane.showMessageDialog(null, "Server started at: " + server.getIPAddress() + "\nPort: " + server.getPort());
 			button.addActionListener((e)->{
 				System.out.println(text.getText());
-				client.sendMessage(text.getText());
+				server.sendMessage(text.getText());
 				text.setText("                        ");
 			});
 			add(panel);
@@ -60,9 +61,11 @@ JTextField text = new JTextField("                        ");
 			add(panel);
 			panel.add(button);
 			panel.add(text);
+			setVisible(true);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			client.start();
 		}
+		
 	}
 }

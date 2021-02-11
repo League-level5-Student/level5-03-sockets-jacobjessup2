@@ -41,7 +41,7 @@ public class Client2 {
 		while (connection.isConnected()) {
 			try {
 				JOptionPane.showMessageDialog(null, is.readObject());
-				System.out.println(is.readObject());
+				//System.out.println("S: "+is.readObject());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

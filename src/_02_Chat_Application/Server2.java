@@ -38,7 +38,7 @@ public class Server2 {
 			while (connection.isConnected()) {
 				try {
 					JOptionPane.showMessageDialog(null, is.readObject());
-					System.out.println(is.readObject());
+					//System.out.println("C: "+is.readObject());
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);
@@ -62,7 +62,7 @@ public class Server2 {
 		return port;
 	}
 
-	public void sendClick(String message) {
+	public void sendMessage(String message) {
 		try {
 			if (os != null) {
 				os.writeObject(message);
