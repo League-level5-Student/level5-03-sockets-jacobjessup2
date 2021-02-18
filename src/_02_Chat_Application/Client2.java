@@ -40,8 +40,10 @@ public class Client2 {
 		
 		while (connection.isConnected()) {
 			try {
-				JOptionPane.showMessageDialog(null, is.readObject());
+				//JOptionPane.showMessageDialog(null, is.readObject());
 				//System.out.println("S: "+is.readObject());
+				String test = (String) is.readObject();
+				ChatApp.chatC.setText(test);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
