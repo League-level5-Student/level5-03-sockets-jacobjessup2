@@ -43,7 +43,8 @@ public class Client2 {
 				//JOptionPane.showMessageDialog(null, is.readObject());
 				//System.out.println("S: "+is.readObject());
 				String test = (String) is.readObject();
-				ChatApp.chatC.setText(test);
+				ChatApp.chatC.setText("<html>"+ ChatApp.chatC.getText().substring(6, ChatApp.chatC.getText().length()-7)+"S: " +test + "<br/></html>");
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

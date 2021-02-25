@@ -19,8 +19,9 @@ public class ChatApp extends JFrame{
 JPanel panel = new JPanel();
 JButton button = new JButton("send");
 JTextField text = new JTextField("                        ");
-static JLabel chatS = new JLabel();
-static JLabel chatC = new JLabel();
+static JLabel chatS = new JLabel("<html><br/><html>");
+static JLabel chatC = new JLabel("<html><br/><html>");
+static String chatLog = "";
 	Server2 server;
 	Client2 client;
 	
@@ -29,6 +30,9 @@ static JLabel chatC = new JLabel();
 		new ChatApp();
 	}
 	
+	void log(String s) {
+		
+	}
 	
 	public ChatApp(){
 		
@@ -40,7 +44,9 @@ static JLabel chatC = new JLabel();
 			JOptionPane.showMessageDialog(null, "Server started at: " + server.getIPAddress() + "\nPort: " + server.getPort());
 			button.addActionListener((e)->{
 				//System.out.println(text.getText());
-				chatS.setText("<html>" + text.getText() +"<br/></html>");
+				//chatLog = chatLog+"S: "+text.getText()+"<br/>";
+				chatS.setText("<html>"+ chatS.getText().substring(6, chatS.getText().length()-7)+ "S: "+text.getText() + "<br/></html>");
+				System.out.println(chatS.getText().substring(6, chatS.getText().length()-7));
 				server.sendMessage(text.getText());
 				text.setText("                        ");
 			});
@@ -61,7 +67,10 @@ static JLabel chatC = new JLabel();
 			client = new Client2(ipStr, port);
 			button.addActionListener((e)->{
 				//System.out.println(text.getText());
-				chatC.setText("<html>" + text.getText() +"<br/></html>");
+				//chatLog = chatLog+"C: "+text.getText()+"<br/>";
+				chatC.setText("<html>"+ chatC.getText().substring(6, chatC.getText().length()-7)+ "C: "+text.getText() + "<br/></html>");
+				System.out.println(chatC.getText().substring(6, chatC.getText().length()-7));
+				
 				client.sendMessage(text.getText());
 				text.setText("                        ");
 			});

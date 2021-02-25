@@ -40,7 +40,7 @@ public class Server2 {
 					//JOptionPane.showMessageDialog(null, is.readObject());
 					//System.out.println("C: "+is.readObject());
 					String test = (String) is.readObject();
-					ChatApp.chatS.setText(test);
+					ChatApp.chatS.setText("<html>"+ ChatApp.chatS.getText().substring(6, ChatApp.chatS.getText().length()-7)+"C: " +test + "<br/></html>");
 				}catch(EOFException e) {
 					JOptionPane.showMessageDialog(null, "Connection Lost");
 					System.exit(0);
